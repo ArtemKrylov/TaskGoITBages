@@ -27,4 +27,13 @@ export const theme = Object.freeze({
     overflow: hidden;
     border: 0;
     clip: rect(0 0 0 0);`,
+  flexCenterAndGap: (gap = 0) =>
+    `display:flex; align-items: center: justify-content: center; gap:${gap}px;`,
+  flexCenter: `display:flex; align-items: center: justify-content: center;`,
+  textInherit: `font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;`,
+  text: (fs, lh, ls) => `font-size: ${fs}px;
+  line-height: calc(${lh}px / ${fs}px);
+  letter-spacing: ${ls}px;`,
 });
