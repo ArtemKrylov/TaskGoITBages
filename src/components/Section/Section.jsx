@@ -1,22 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'components/App/App.styled';
+import SectionStyled from './Section.styled';
 
-export const Section = ({ title, className = 'section', children }) => {
+export function Section({ title, children }) {
   return (
-    <section className={`section ${className}`}>
+    <SectionStyled className={`section`}>
       <Container className="container">
-        {title && (
-          <h3 className={`${className}__title section-title`}>{title}</h3>
-        )}
+        {title && <h3 className={`section__title`}>{title}</h3>}
         {children}
       </Container>
-    </section>
+    </SectionStyled>
   );
-};
+}
 
 Section.propTypes = {
   title: PropTypes.string,
-  className: PropTypes.string,
   children: PropTypes.node,
 };

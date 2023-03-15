@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { Section } from './Section';
 
-const SectionStyled = styled(Section)`
+const SectionStyled = styled.section`
   padding-top: 15px;
   padding-bottom: 15px;
 
-  & .section-title {
+  & .section__title {
     margin-bottom: 5px;
 
     text-align: center;

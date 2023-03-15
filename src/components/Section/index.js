@@ -1,1 +1,1 @@
-export { default } from './Section.styled';
+export { default } from './Section';
