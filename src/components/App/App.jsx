@@ -12,7 +12,7 @@ import TweetsPage from 'pages/TweetsPage/TweetsPage';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
 
-const basename = '/magicTweets/';
+const basename = '/tweets_task_goit/';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
