@@ -4,16 +4,12 @@ import 'modern-normalize/modern-normalize.css';
 export const GlobalStyle = createGlobalStyle`
   body {
 		margin: 0;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-			'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-			sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	.visually-hidden {
 		position: absolute;
-		width: 1px;
+  	width: 1px;
 		height: 1px;
 		margin: -1px;
 		padding: 0;
@@ -49,6 +45,7 @@ export const GlobalStyle = createGlobalStyle`
 	img {
 		display: block;
 		overflow: hidden;
+		max-width: 100%;
 	} 
 
 	li {
@@ -57,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
 
 	a {
 		text-decoration: none;
+		color: inherit;
 	}
 
 	button {

@@ -6,13 +6,15 @@ import {
 } from 'react-router-dom';
 import { GlobalStyle } from '../GlobalStyle';
 import { lazy } from 'react';
+
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import TweetsPage from 'pages/TweetsPage/TweetsPage';
 
-const HomePage = lazy(() => import('pages/HomePage/HomePage'));
-const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+// const TweetsPage = lazy(() => import('pages/TweetsPage'));
+const NoMatchPage = lazy(() => import('pages/NoMatchPage'));
 
-const basename = '/tweets_task_goit/';
+const basename = '/tweets_task_goit';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
