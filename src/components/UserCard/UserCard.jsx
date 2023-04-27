@@ -4,7 +4,10 @@ import { UserCardStyled } from './UserCard.styled';
 import { mockapiTest_API } from 'API/mockapiTest_API';
 
 const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
-  const storedFollowings = localStorage.getItem('following') ?? [];
+  const storedFollowings = JSON.parse(
+    localStorage.getItem('following') ?? '[]'
+  );
+  console.log('storedFollowings: ', storedFollowings);
   const isIdStored = storedFollowings.indexOf(id) !== -1;
   const [isFollowed, setIsFollowed] = useState(isIdStored);
   const [followersNumber, setFollowersNumber] = useState(followers);
@@ -27,7 +30,14 @@ const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
         console.log(error);
       }
       setFollowersNumber(prev => ++prev);
-      localStorage.setItem('following', [...storedFollowings, id]);
+
+      localStorage.setItem(
+        'following',
+        JSON.stringify([
+          ...JSON.parse(localStorage.getItem('following') ?? '[]'),
+          id,
+        ])
+      );
     }
 
     //Unfollow
@@ -47,7 +57,11 @@ const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
       setFollowersNumber(prev => --prev);
       localStorage.setItem(
         'following',
-        storedFollowings.filter(el => el !== id)
+        JSON.stringify(
+          JSON.parse(localStorage.getItem('following') ?? '[]').filter(
+            el => el !== id
+          )
+        )
       );
     }
   };
