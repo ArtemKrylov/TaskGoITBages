@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { UserCardStyled } from './UserCard.styled';
 import { mockapiTest_API } from 'API/mockapiTest_API';
 
-const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
+const UserCard = ({
+  user: { tweets, followers, user, avatar, id },
+  changeDisplayedUsers,
+}) => {
   const storedFollowings = JSON.parse(
     localStorage.getItem('following') ?? '[]'
   );
-  console.log('storedFollowings: ', storedFollowings);
   const isIdStored = storedFollowings.indexOf(id) !== -1;
   const [isFollowed, setIsFollowed] = useState(isIdStored);
   const [followersNumber, setFollowersNumber] = useState(followers);
@@ -38,6 +40,7 @@ const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
           id,
         ])
       );
+      changeDisplayedUsers({ id, action: 'follow' });
     }
 
     //Unfollow
@@ -63,6 +66,7 @@ const UserCard = ({ user: { tweets, followers, user, avatar, id } }) => {
           )
         )
       );
+      changeDisplayedUsers({ id, action: 'unfollow' });
     }
   };
 
@@ -91,6 +95,7 @@ UserCard.propTypes = {
     user: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
+  changeDisplayedUsers: PropTypes.func.isRequired,
 };
 
 export default UserCard;

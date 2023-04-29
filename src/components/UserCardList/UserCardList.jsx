@@ -5,57 +5,52 @@ import ListSkeleton from 'components/ListSkeleton/ListSkeleton';
 import UserCard from 'components/UserCard';
 import { UserCardListStyled } from './UserCardList.styled';
 import FilterUserCards from 'components/FilterUserCards/FilterUserCards';
+import { FILTER_OPTIONS } from 'utils/constants/filterOptions';
 
 //TODO add filtration, pagination
 
 const UserCardList = () => {
-  const FILTER_OPTIONS = Object.freeze({
-    all: 'all',
-    follow: 'follow',
-    followings: 'followings',
-  });
   const followingUsers = localStorage.getItem('following');
-  console.log('followingUsers: ', followingUsers);
 
   const [users, setUsers] = useState([]);
+  const [displayedUsers, setDisplayedUsers] = useState(users);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [filter, setFilter] = useState(FILTER_OPTIONS.all);
   const cardsPerPage = 9;
 
-  let filteredUsers = users;
-  if (filter === FILTER_OPTIONS.follow) {
-    filteredUsers = users.filter(
-      user => followingUsers.indexOf(user.id) === -1
-    );
-  }
-  if (filter === FILTER_OPTIONS.followings) {
-    filteredUsers = users.filter(
-      user => followingUsers.indexOf(user.id) !== -1
-    );
-  }
-
-  const paginatedUsers = filteredUsers.slice(
-    0,
-    cardsPerPage + cardsPerPage * currentPage
-  );
-
   function onLoadMoreBtnClick(event) {
     event.preventDefault();
     setCurrentPage(prev => ++prev);
   }
-  console.log('paginatedUsers: ', paginatedUsers);
 
   function onFilterChange(newFilter) {
     setFilter(FILTER_OPTIONS[newFilter] ?? FILTER_OPTIONS.all);
+  }
+
+  function changeDisplayedUsers({ id, action }) {
+    //TODO 1. change users - add/delete followers 2.change displayed users
+    setUsers(prev =>
+      prev.map(user => {
+        if (user.id !== id) return user;
+        const followers = user.followers;
+        if (action === 'follow') user.followers = followers + 1;
+        if (action === 'unfollow') user.followers = followers - 1;
+        return user;
+      })
+    );
+
+    setDisplayedUsers(prev =>
+      prev.filter(displayedUser => displayedUser.id !== id)
+    );
   }
 
   useEffect(() => {
     const getUsers = async () => {
       setIsLoading(true);
       const response = await mockapiTest_API.getAllUsers();
-      console.log('response: ', response);
       setUsers(response);
+
       setIsLoading(false);
       return response;
     };
@@ -66,18 +61,55 @@ const UserCardList = () => {
     }
   }, []);
 
-  //!TODO pagination
+  useEffect(() => {
+    function filterAndPaginateUsers(users, currentPage, filter) {
+      let filteredUsers = users;
+      if (filter === FILTER_OPTIONS.follow) {
+        filteredUsers = users.filter(
+          user => followingUsers.indexOf(user.id) === -1
+        );
+      }
+      if (filter === FILTER_OPTIONS.followings) {
+        filteredUsers = users.filter(
+          user => followingUsers.indexOf(user.id) !== -1
+        );
+      }
+
+      const paginatedFilterdUsers =
+        filteredUsers.length > cardsPerPage
+          ? filteredUsers.slice(0, cardsPerPage + cardsPerPage * currentPage)
+          : filteredUsers;
+      setDisplayedUsers(paginatedFilterdUsers);
+    }
+    filterAndPaginateUsers(users, currentPage, filter);
+  }, [currentPage, filter, followingUsers, users]);
 
   if (isLoading) return <ListSkeleton />;
-  if (!isLoading && users.length === 0) return <div>No users</div>;
-  if (!isLoading && users.length > 0)
+  if (!isLoading && displayedUsers.length === 0)
+    return (
+      <div>
+        <FilterUserCards
+          onFilterChange={onFilterChange}
+          selectedFilter={filter}
+        />
+        No users
+      </div>
+    );
+  if (!isLoading && displayedUsers.length > 0) {
     return (
       <UserCardListStyled className="userCardList">
-        <FilterUserCards onFilterChange={onFilterChange} />
-        {paginatedUsers.map(user => (
-          <UserCard user={user} key={user.id} />
+        <FilterUserCards
+          onFilterChange={onFilterChange}
+          selectedFilter={filter}
+        />
+        {displayedUsers.map(user => (
+          <UserCard
+            user={user}
+            changeDisplayedUsers={changeDisplayedUsers}
+            key={user.id}
+          />
         ))}
-        {users.length > cardsPerPage && (
+        {displayedUsers.length > cardsPerPage && (
           <button
             type="button"
             className="useCardList__loadMoreBtn"
@@ -88,6 +120,7 @@ const UserCardList = () => {
         )}
       </UserCardListStyled>
     );
+  }
 };
 
 export default UserCardList;
