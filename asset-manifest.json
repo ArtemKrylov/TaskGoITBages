@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/tweets_task_goit/static/css/main.17654e45.css",
-    "main.js": "/tweets_task_goit/static/js/main.c05864e6.js",
+    "main.js": "/tweets_task_goit/static/js/main.da9b87ab.js",
     "static/js/35.f61e0eef.chunk.js": "/tweets_task_goit/static/js/35.f61e0eef.chunk.js",
-    "static/css/439.ade4c095.chunk.css": "/tweets_task_goit/static/css/439.ade4c095.chunk.css",
-    "static/js/439.3e2b5e40.chunk.js": "/tweets_task_goit/static/js/439.3e2b5e40.chunk.js",
+    "static/css/646.3afae345.chunk.css": "/tweets_task_goit/static/css/646.3afae345.chunk.css",
+    "static/js/646.f18a273f.chunk.js": "/tweets_task_goit/static/js/646.f18a273f.chunk.js",
     "static/js/661.2682bb05.chunk.js": "/tweets_task_goit/static/js/661.2682bb05.chunk.js",
     "static/js/252.fbf7c080.chunk.js": "/tweets_task_goit/static/js/252.fbf7c080.chunk.js",
     "static/media/userCardBg.png": "/tweets_task_goit/static/media/userCardBg.86562350dcaa714a1442.png",
     "index.html": "/tweets_task_goit/index.html",
     "main.17654e45.css.map": "/tweets_task_goit/static/css/main.17654e45.css.map",
-    "main.c05864e6.js.map": "/tweets_task_goit/static/js/main.c05864e6.js.map",
+    "main.da9b87ab.js.map": "/tweets_task_goit/static/js/main.da9b87ab.js.map",
     "35.f61e0eef.chunk.js.map": "/tweets_task_goit/static/js/35.f61e0eef.chunk.js.map",
-    "439.ade4c095.chunk.css.map": "/tweets_task_goit/static/css/439.ade4c095.chunk.css.map",
-    "439.3e2b5e40.chunk.js.map": "/tweets_task_goit/static/js/439.3e2b5e40.chunk.js.map",
+    "646.3afae345.chunk.css.map": "/tweets_task_goit/static/css/646.3afae345.chunk.css.map",
+    "646.f18a273f.chunk.js.map": "/tweets_task_goit/static/js/646.f18a273f.chunk.js.map",
     "661.2682bb05.chunk.js.map": "/tweets_task_goit/static/js/661.2682bb05.chunk.js.map",
     "252.fbf7c080.chunk.js.map": "/tweets_task_goit/static/js/252.fbf7c080.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.17654e45.css",
-    "static/js/main.c05864e6.js"
+    "static/js/main.da9b87ab.js"
   ]
 }
