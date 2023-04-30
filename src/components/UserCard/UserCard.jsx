@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { UserCardStyled } from './UserCard.styled';
 import { mockapiTest_API } from 'API/mockapiTest_API';
 import logo from '../../data/img/Logo.png';
+import logo2x from '../../data/img/Logo2x.png';
 import cardTweetImg from '../../data/img/userCardBg.png';
-import userAvatar from '../../data/img/userAvatar.png';
+import cardTweetImg2x from '../../data/img/userCardBg2x.png';
+import userDefaultAvatar2x from '../../data/img/userDefaultAvatar2x.png';
 import { Button } from 'components/GlobalStyle';
 import { theme } from 'utils/constants/theme';
 
@@ -19,6 +21,11 @@ const UserCard = ({
   const [isFollowed, setIsFollowed] = useState(isIdStored);
   const [followersNumber, setFollowersNumber] = useState(followers);
   const followButtonRef = useRef();
+
+  //if no avatar image from backend - use default avatar image
+  if (!avatar || avatar.length === 0) {
+    avatar = userDefaultAvatar2x;
+  }
 
   async function onFollowButtonClick(event) {
     event.preventDefault();
@@ -93,9 +100,16 @@ const UserCard = ({
 
   return (
     <UserCardStyled className="userCard">
-      <img src={logo} className="userCard__logo" alt="logo"></img>
+      <img
+        src={logo}
+        srcSet={`${logo} 1x, ${logo2x} 2x`}
+        className="userCard__logo"
+        alt="logo"
+        fetchpriority="low"
+      ></img>
       <img
         src={cardTweetImg}
+        srcSet={`${cardTweetImg} 1x, ${cardTweetImg2x} 2x`}
         className="userCard__tweetImg"
         alt=" two
         tweet
@@ -104,11 +118,17 @@ const UserCard = ({
         question
         and
         check"
+        fetchpriority="low"
       ></img>
       <div className="userCard__line"></div>
 
       <div className="userCard__ellipse" alt="ellipse around avatar">
-        <img src={userAvatar} className="userCard__avatar" alt="user avatar" />
+        <img
+          src={avatar}
+          className="userCard__avatar"
+          alt="user avatar"
+          fetchpriority="high"
+        />
       </div>
       <div className="spacer"></div>
 

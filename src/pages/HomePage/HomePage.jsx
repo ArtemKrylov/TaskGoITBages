@@ -10,7 +10,7 @@ const HomePage = () => {
   }
   return (
     <HomePageStyled className="homePage">
-      <h1 className="homePage__mainTitle">Welcome to the Tweeter App!</h1>
+      <h1 className="homePage__mainTitle">Welcome to Tweety!</h1>
       <Button
         type="button"
         className="tweetsNavigateBtn"

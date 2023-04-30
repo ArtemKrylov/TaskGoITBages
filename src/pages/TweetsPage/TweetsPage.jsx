@@ -95,16 +95,17 @@ const TweetsPage = () => {
         changeDisplayedUsers={changeDisplayedUsers}
         isLoading={isLoading}
       />
-      {filteredUsers.length > cardsPerPage && (
-        <Button
-          type="button"
-          className="useCardList__loadMoreBtn"
-          onClick={onLoadMoreBtnClick}
-          ariaLabel="load more tweets"
-        >
-          Load more
-        </Button>
-      )}
+      {filteredUsers.length > cardsPerPage &&
+        displayedUsers.length !== filteredUsers.length && (
+          <Button
+            type="button"
+            className="useCardList__loadMoreBtn"
+            onClick={onLoadMoreBtnClick}
+            ariaLabel="load more tweets"
+          >
+            Load more
+          </Button>
+        )}
     </TweetsPageStyled>
   );
 };
