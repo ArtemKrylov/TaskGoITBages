@@ -72,14 +72,24 @@ export const Container = styled.div`
   padding-left: 20px;
   width: 100%;
 
-  ${props => props.theme.media.tablet} {
+  ${theme.media.tablet} {
     width: 768px;
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 
-  ${props => props.theme.media.desktop} {
-    width: 1200px;
+  ${theme.media.tabletLarge} {
+    width: 992px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  ${theme.media.desktop} {
+    width: 1280px;
+  }
+
+  ${theme.media.desktopLarge} {
+    width: 2160px;
   }
 `;
 

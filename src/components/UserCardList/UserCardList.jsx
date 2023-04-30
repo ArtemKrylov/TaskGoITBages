@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 
 import ListSkeleton from 'components/ListSkeleton/ListSkeleton';
 import UserCard from 'components/UserCard';
-import { UserCardListStyled } from './UserCardList.styled';
+import {
+  UserCardListNoUsersStyled,
+  UserCardListStyled,
+} from './UserCardList.styled';
 
 const UserCardList = ({ displayedUsers, changeDisplayedUsers, isLoading }) => {
   if (isLoading) return <ListSkeleton />;
-  if (!isLoading && displayedUsers.length === 0) return <div>No users</div>;
+  if (!isLoading && displayedUsers.length === 0)
+    return (
+      <UserCardListNoUsersStyled className="userCardList--noUsers">
+        No users 🔍🫡
+      </UserCardListNoUsersStyled>
+    );
 
   if (!isLoading && displayedUsers.length > 0) {
     return (

@@ -14,7 +14,9 @@ export const theme = Object.freeze({
   },
   media: {
     tablet: `@media screen and (min-width: 768px)`,
-    desktop: `@media screen and (min-width: 1200px)`,
+    tabletLarge: `@media screen and (min-width: 992px)`,
+    desktop: `@media screen and (min-width: 1280px)`,
+    desktopLarge: `@media screen and (min-width: 2160px)`,
   },
   shadows: {
     card: ` -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23)`,
