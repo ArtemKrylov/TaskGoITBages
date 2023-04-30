@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserCardStyled } from './UserCard.styled';
 import { mockapiTest_API } from 'API/mockapiTest_API';
@@ -6,6 +6,7 @@ import logo from '../../data/img/Logo.png';
 import cardTweetImg from '../../data/img/userCardBg.png';
 import userAvatar from '../../data/img/userAvatar.png';
 import { Button } from 'components/GlobalStyle';
+import { theme } from 'utils/constants/theme';
 
 const UserCard = ({
   user: { tweets, followers, user, avatar, id },
@@ -17,10 +18,11 @@ const UserCard = ({
   const isIdStored = storedFollowings.indexOf(id) !== -1;
   const [isFollowed, setIsFollowed] = useState(isIdStored);
   const [followersNumber, setFollowersNumber] = useState(followers);
+  const followButtonRef = useRef();
 
-  const onFollowButtonClick = async event => {
+  async function onFollowButtonClick(event) {
     event.preventDefault();
-    //Follow
+    //!Follow
     if (!isFollowed) {
       setIsFollowed(true);
 
@@ -37,6 +39,10 @@ const UserCard = ({
       }
       setFollowersNumber(prev => ++prev);
 
+      //changing followed user card button bgcolor
+      followButtonRef.current.style.backgroundColor = theme.colors.accent;
+
+      //saving followed user id to localstorage
       localStorage.setItem(
         'following',
         JSON.stringify([
@@ -47,7 +53,7 @@ const UserCard = ({
       changeDisplayedUsers({ id, action: 'follow' });
     }
 
-    //Unfollow
+    //!Unfollow
     if (isFollowed) {
       setIsFollowed(false);
       try {
@@ -62,6 +68,11 @@ const UserCard = ({
         console.log(error);
       }
       setFollowersNumber(prev => --prev);
+
+      //changing unfollowed user card button bgcolor
+      followButtonRef.current.style.backgroundColor = theme.colors.white;
+
+      //deleting unfollowed user id from localstorage
       localStorage.setItem(
         'following',
         JSON.stringify(
@@ -72,7 +83,13 @@ const UserCard = ({
       );
       changeDisplayedUsers({ id, action: 'unfollow' });
     }
-  };
+  }
+
+  useEffect(() => {
+    if (isFollowed) {
+      followButtonRef.current.style.backgroundColor = theme.colors.accent;
+    }
+  }, [isFollowed]);
 
   return (
     <UserCardStyled className="userCard">
@@ -103,6 +120,7 @@ const UserCard = ({
         title="add user to followings"
         className="userCard__followButton"
         onClick={onFollowButtonClick}
+        ref={followButtonRef}
       >
         {isFollowed ? 'Following' : 'Follow'}
       </Button>

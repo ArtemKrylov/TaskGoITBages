@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import BackButton from 'components/BackButton';
 import UserCardList from 'components/UserCardList';
-import { Button, Container } from 'components/GlobalStyle';
+import { Button } from 'components/GlobalStyle';
 import FilterUserCards from 'components/FilterUserCards/FilterUserCards';
 import { FILTER_OPTIONS } from 'utils/constants/filterOptions';
 import { mockapiTest_API } from 'API/mockapiTest_API';
+import { TweetsPageStyled } from './TweetsPage.styled';
 
 const TweetsPage = () => {
   const followingUsers = localStorage.getItem('following');
@@ -83,8 +84,7 @@ const TweetsPage = () => {
   }, [filter, followingUsers, users]);
 
   return (
-    <Container>
-      TweetsPage
+    <TweetsPageStyled className="tweetsPage">
       <BackButton navigateTo="/" />
       <FilterUserCards
         onFilterChange={onFilterChange}
@@ -104,7 +104,7 @@ const TweetsPage = () => {
           Load more
         </Button>
       )}
-    </Container>
+    </TweetsPageStyled>
   );
 };
 
