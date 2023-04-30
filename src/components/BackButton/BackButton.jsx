@@ -16,9 +16,10 @@ const BackButton = ({ navigateTo }) => {
       className="backButton"
       title="Back to homepage"
       onClick={onBackButtonClick}
+      ariaLabel="return to homepage"
     >
       <RiArrowGoBackLine />
-      <span>Back</span>
+      <span className="backButton__text">Back</span>
     </BackButtonStyled>
   );
 };

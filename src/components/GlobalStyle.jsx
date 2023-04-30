@@ -22,8 +22,9 @@ export const GlobalStyle = createGlobalStyle`
 	.app {
 		width: 100vw;
 		min-height: 100vh;
-		background-color: #52ACFF;
-		background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+		background-color: ${theme.colors.accent2};
+		background-image: linear-gradient(140deg, ${theme.colors.darkBlue} 15%, ${theme.colors.accent2} 45%, ${theme.colors.accent3});
+		background-attachment: fixed;
 
 	}
 
@@ -95,11 +96,16 @@ export const Button = styled.button`
   font-weight: 600;
   text-transform: uppercase;
 
-  transition: background-color ${theme.cubic};
+  transition: background-color ${theme.cubic}, transform ${theme.cubic},
+    color ${theme.cubic}, outline ${theme.cubic}, text-shadow ${theme.cubic};
 
   &:hover,
   &:focus,
   &:active {
     background-color: ${theme.colors.accent};
+    transform: translate(1px, 1px);
+    color: ${theme.colors.accent3};
+    text-shadow: ${theme.shadows.textAccent};
+    outline: 1px solid ${theme.colors.accent3};
   }
 `;

@@ -100,6 +100,7 @@ const TweetsPage = () => {
           type="button"
           className="useCardList__loadMoreBtn"
           onClick={onLoadMoreBtnClick}
+          ariaLabel="load more tweets"
         >
           Load more
         </Button>

@@ -21,6 +21,12 @@ export const UserCardStyled = styled.li`
   text-transform: uppercase;
   text-align: center;
   overflow: hidden;
+  transition: transform ${theme.cubic};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 
   & .userCard__logo {
     position: absolute;
@@ -34,7 +40,7 @@ export const UserCardStyled = styled.li`
 
   & .userCard__line {
     position: absolute;
-    top: 39%;
+    top: 45%;
     left: 0;
     transform: translate(0, -50%);
     width: 100%;
@@ -46,7 +52,7 @@ export const UserCardStyled = styled.li`
 
   & .userCard__ellipse {
     position: absolute;
-    top: 39%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80px;
@@ -58,7 +64,13 @@ export const UserCardStyled = styled.li`
   }
 
   & .userCard__avatar {
+    background-color: ${theme.colors.violet};
     object-fit: cover;
+    border-radius: 50%;
+  }
+
+  & .spacer {
+    flex-grow: 1;
   }
 
   & .userCard__tweets,
@@ -80,11 +92,12 @@ export const UserCardStyled = styled.li`
     width: 380px;
 
     & .userCard__line {
-      top: 50%;
+      top: 214px;
     }
 
     & .userCard__ellipse {
-      top: 50%;
+      top: 178px;
+      transform: translate(-50%, 0);
     }
   }
 `;

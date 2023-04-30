@@ -110,6 +110,7 @@ const UserCard = ({
       <div className="userCard__ellipse" alt="ellipse around avatar">
         <img src={userAvatar} className="userCard__avatar" alt="user avatar" />
       </div>
+      <div className="spacer"></div>
 
       <p className="userCard__tweets">{transformNumber(tweets)} tweets</p>
       <p className="userCard__followers">
@@ -117,10 +118,11 @@ const UserCard = ({
       </p>
       <Button
         type="button"
-        title="add user to followings"
+        title="add/remove user to/from followings"
         className="userCard__followButton"
         onClick={onFollowButtonClick}
         ref={followButtonRef}
+        ariaLabel="follow or unfollow if followed the user"
       >
         {isFollowed ? 'Following' : 'Follow'}
       </Button>

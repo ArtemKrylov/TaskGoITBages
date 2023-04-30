@@ -4,7 +4,9 @@ export const theme = Object.freeze({
     black: '#373737',
     accent: '#5CD3A8',
     accent2: '#471CA9',
+    accent3: '#f72585',
     violet: '#5736A3',
+    darkBlue: '#03045e',
   },
   gradients: {
     userCard:
@@ -16,6 +18,7 @@ export const theme = Object.freeze({
   },
   shadows: {
     card: ` -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23)`,
+    textAccent: `1px 1px #f72585`,
     button: `0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25)`,
     line: `0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF;
 `,

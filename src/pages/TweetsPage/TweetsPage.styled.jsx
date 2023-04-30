@@ -6,5 +6,6 @@ export const TweetsPageStyled = styled(Container)`
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  padding: 10px 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
