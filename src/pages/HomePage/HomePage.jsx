@@ -1,5 +1,5 @@
-import { Container } from 'components/App/App.styled';
 import React from 'react';
+import { Container } from 'components/GlobalStyle';
 
 const HomePage = () => {
   return <Container>HomePage</Container>;

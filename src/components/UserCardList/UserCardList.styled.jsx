@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { theme } from 'utils/constants/theme';
 
 export const UserCardListStyled = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${theme.flexCenterAndGap(25)}
   flex-wrap: wrap;
 `;

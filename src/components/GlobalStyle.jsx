@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import 'modern-normalize/modern-normalize.css';
+import { theme } from 'utils/constants/theme';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -61,4 +62,44 @@ export const GlobalStyle = createGlobalStyle`
 		cursor: pointer;
 	}
 
+`;
+
+export const Container = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+
+  ${props => props.theme.media.tablet} {
+    width: 768px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  ${props => props.theme.media.desktop} {
+    width: 1200px;
+  }
+`;
+
+export const Button = styled.button`
+  padding: 14px 56px;
+
+  border: none;
+  border-radius: ${theme.borderRadius.card};
+  color: ${theme.colors.black};
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.shadows.button};
+
+  ${theme.text(18, 22)}
+  font-weight: 600;
+  text-transform: uppercase;
+
+  transition: background-color ${theme.cubic};
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: ${theme.colors.accent};
+  }
 `;

@@ -8,10 +8,10 @@ import { GlobalStyle } from '../GlobalStyle';
 import { lazy } from 'react';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
-import TweetsPage from 'pages/TweetsPage/TweetsPage';
+import { AppStyled } from './App.styled';
 
 const HomePage = lazy(() => import('pages/HomePage'));
-// const TweetsPage = lazy(() => import('pages/TweetsPage'));
+const TweetsPage = lazy(() => import('pages/TweetsPage'));
 const NoMatchPage = lazy(() => import('pages/NoMatchPage'));
 
 const basename = '/tweets_task_goit';
@@ -29,9 +29,9 @@ const router = createBrowserRouter(
 
 export default function App() {
   return (
-    <div className="app">
+    <AppStyled className="app">
       <RouterProvider router={router} />
       <GlobalStyle />
-    </div>
+    </AppStyled>
   );
 }
