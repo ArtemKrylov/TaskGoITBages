@@ -13,6 +13,7 @@ export const theme = Object.freeze({
       'linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%);',
   },
   media: {
+    mobileOnly: `@media screen and (max-width: 767px)`,
     tablet: `@media screen and (min-width: 768px)`,
     tabletLarge: `@media screen and (min-width: 992px)`,
     desktop: `@media screen and (min-width: 1280px)`,

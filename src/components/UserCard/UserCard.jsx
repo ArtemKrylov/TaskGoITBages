@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserCardStyled } from './UserCard.styled';
 import { mockapiTest_API } from 'API/mockapiTest_API';
-import logo from '../../data/img/Logo.png';
-import logo2x from '../../data/img/Logo2x.png';
-import cardTweetImg from '../../data/img/userCardBg.png';
-import cardTweetImg2x from '../../data/img/userCardBg2x.png';
 import userDefaultAvatar2x from '../../data/img/userDefaultAvatar2x.png';
 import { Button } from 'components/GlobalStyle';
 import { theme } from 'utils/constants/theme';
@@ -100,37 +96,15 @@ const UserCard = ({
 
   return (
     <UserCardStyled className="userCard">
-      <img
-        src={logo}
-        srcSet={`${logo} 1x, ${logo2x} 2x`}
-        className="userCard__logo"
-        alt="logo"
-        fetchpriority="low"
-      ></img>
-      <img
-        src={cardTweetImg}
-        srcSet={`${cardTweetImg} 1x, ${cardTweetImg2x} 2x`}
-        className="userCard__tweetImg"
-        alt=" two
-        tweet
-        clouds
-        with
-        question
-        and
-        check"
-        fetchpriority="low"
-      ></img>
-      <div className="userCard__line"></div>
-
-      <div className="userCard__ellipse" alt="ellipse around avatar">
+      <div className="userCard__frame" alt="frame around avatar">
         <img
           src={avatar}
           className="userCard__avatar"
           alt="user avatar"
           fetchpriority="high"
+          width={63}
         />
       </div>
-      <div className="spacer"></div>
 
       <p className="userCard__tweets">{transformNumber(tweets)} tweets</p>
       <p className="userCard__followers">

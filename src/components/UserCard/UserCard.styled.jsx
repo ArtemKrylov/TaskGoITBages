@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 import { theme } from 'utils/constants/theme';
 import ellipse from '../../data/img/ellipse.png';
+import logo from '../../data/img/Logo.png';
+import logo2x from '../../data/img/Logo2x.png';
+import cardTweetImg from '../../data/img/userCardBg.png';
+import cardTweetImg2x from '../../data/img/userCardBg2x.png';
 
 export const UserCardStyled = styled.li`
-  width: 100%;
+  width: 380px;
+
   max-width: 380px;
   min-height: 460px;
-  padding: 28px 36px 36px;
+  padding: 187px 36px 36px;
   position: relative;
 
   display: flex;
@@ -15,7 +20,20 @@ export const UserCardStyled = styled.li`
 
   border-radius: ${theme.borderRadius.card};
   background-color: ${theme.colors.accent2};
-  background-image: ${theme.gradients.userCard};
+  background-image: url(${logo}), url(${cardTweetImg}),
+    ${theme.gradients.userCard};
+  background-repeat: no-repeat;
+  background-position: 20px 20px, 36px 28px, top left;
+  background-size: 76px 22px, 308px 168px, 100% 100%;
+
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    & {
+      background-image: url(${logo2x}), url(${cardTweetImg2x}),
+        ${theme.gradients.userCard};
+    }
+  }
   box-shadow: ${theme.shadows.card};
 
   text-transform: uppercase;
@@ -28,49 +46,45 @@ export const UserCardStyled = styled.li`
     transform: scale(1.05);
   }
 
-  & .userCard__logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
+  & .userCard__frame {
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      z-index: 2;
+    }
 
-  & .userCard__tweetImg {
-    margin-bottom: 88px;
-  }
+    /* Horizontal line */
+    &::before {
+      top: calc((62px - 8px) / 2);
+      left: calc((380px - 62px) / 2 * -1);
+      width: 380px;
+      height: 8px;
+      background-color: ${theme.colors.white};
+      box-shadow: ${theme.shadows.line};
+    }
 
-  & .userCard__line {
-    position: absolute;
-    top: 45%;
-    left: 0;
-    transform: translate(0, -50%);
-    width: 100%;
-    height: 8px;
-
-    background-color: ${theme.colors.white};
-    box-shadow: ${theme.shadows.line};
-  }
-
-  & .userCard__ellipse {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    padding: 8px;
-    border-radius: 50%;
-    background-color: ${theme.colors.violet};
-    background-image: url(${ellipse});
+    /* Ellipse */
+    &::after {
+      top: -8px;
+      left: -8px;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background-color: ${theme.colors.violet};
+      background-image: url(${ellipse});
+    }
   }
 
   & .userCard__avatar {
+    margin-bottom: 35px;
+    position: relative;
+    z-index: 3;
     background-color: ${theme.colors.violet};
     object-fit: cover;
     border-radius: 50%;
-  }
-
-  & .spacer {
-    flex-grow: 1;
   }
 
   & .userCard__tweets,
@@ -88,16 +102,9 @@ export const UserCardStyled = styled.li`
     margin-bottom: 26px;
   }
 
-  ${theme.media.tablet} {
-    width: 380px;
-
-    & .userCard__line {
-      top: 214px;
-    }
-
-    & .userCard__ellipse {
-      top: 178px;
-      transform: translate(-50%, 0);
-    }
+  ${theme.media.mobileOnly} {
+    width: 100%;
+    background-size: 76px 22px, 253px 138px, 100% 100%;
+    background-position: 15px 15px, calc(100% / 2) 28px, top left;
   }
 `;
